@@ -40,3 +40,11 @@ def calculate_total_bill_with_tax(rate, quantity, tax_rate=0.05):
     return total_with_tax
 
 
+def new_function(a,b,c):
+    sum = a + b + c
+    print("This is a new function that returns a value.")
+    return sum
+
+sum  = 5 + new_function(1,2,3)
+print("Sum of 5 and the return value of new_function: " + str(sum))
+
