@@ -230,3 +230,28 @@ if __name__ == "__main__":
 
 - **Space Complexity**: $\mathcal{O}(\log N)$ (Average auxiliary stack space)
 - **Explanation**: Quick Sort is an **in-place** sorting algorithm (auxiliary space for storage is $\mathcal{O}(1)$). However, memory is consumed on the call stack due to recursion. In the average/best case, stack depth is $\mathcal{O}(\log N)$. In the worst case, the call stack can grow up to $\mathcal{O}(N)$.
+
+---
+
+## ❓ Interview Questions & Answers
+
+### 1. How does the choice of pivot element affect the performance of the Quick Sort algorithm?
+**Answer:** The choice of pivot determines how balanced the splits are. If the pivot consistently divides the array into two nearly equal halves, the recursion tree height is $O(\log N)$, resulting in the best-case time complexity of $O(N \log N)$. If the pivot is poorly chosen (e.g., always the smallest or largest element), it creates extremely unbalanced partitions of size $0$ and $N-1$, leading to a recursion tree height of $O(N)$ and the worst-case time complexity of $O(N^2)$.
+
+### 2. Why does Quick Sort have a worst-case time complexity of $O(N^2)$, and how can we mitigate this in practice?
+**Answer:** The worst case occurs when the partitions are highly unbalanced (e.g., sorting an already sorted or reverse-sorted array using the first or last element as the pivot).
+*   **Mitigation:**
+    1.  **Randomized Quick Sort:** Choose a random element from the array as the pivot.
+    2.  **Median-of-Three:** Choose the pivot as the median of the first, middle, and last elements of the array. This makes the worst-case scenario extremely rare in real-world scenarios.
+
+### 3. Is Quick Sort an in-place sorting algorithm? What is its space complexity?
+**Answer:** Yes, Quick Sort is considered **in-place** because it partitions elements by swapping them directly within the original array without creating new sub-arrays. However, it requires call stack space for recursion. Its auxiliary space complexity is $O(\log N)$ on average (stack frames), but can degenerate to $O(N)$ in the worst case if the recursion is highly unbalanced.
+
+### 4. Is standard Quick Sort a stable sorting algorithm? Why or why not?
+**Answer:** No, standard Quick Sort is **unstable**. During the partitioning process, elements are swapped over long distances across the pivot boundary. These swaps can easily bypass other equal elements, disrupting their original relative order.
+
+### 5. Compare Quick Sort and Merge Sort. In what scenarios would you choose one over the other?
+**Answer:**
+*   **Choose Quick Sort** for arrays when memory is limited. It is in-place ($O(\log N)$ stack space) and generally faster in practice due to excellent cache locality.
+*   **Choose Merge Sort** when stability is required (preserving the order of duplicate items), when sorting extremely large datasets that do not fit into RAM (external sorting), or when sorting linked lists.
+

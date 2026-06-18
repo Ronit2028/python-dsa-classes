@@ -233,3 +233,28 @@ if __name__ == "__main__":
 
 - **Space Complexity**: $\mathcal{O}(N)$
 - **Explanation**: Merge Sort is **not** an in-place sorting algorithm in its standard implementation. Auxiliary sub-arrays (`left_half` and `right_half`) of size sum equal to $N$ are created at each recursion step to store the split parts. The maximum height of the recursion call stack is $\mathcal{O}(\log N)$, but the space taken by temporary slices dominates at $\mathcal{O}(N)$.
+
+---
+
+## ❓ Interview Questions & Answers
+
+### 1. Explain how the "Divide and Conquer" strategy is applied in Merge Sort.
+**Answer:**
+*   **Divide:** The unsorted array of size $N$ is recursively split into two halves until we reach sub-arrays of size 1 or 0 (which are already sorted by definition).
+*   **Conquer:** The algorithm recursively sorts the divided sub-arrays.
+*   **Combine (Merge):** The sorted sub-arrays are merged back together to produce a larger sorted array by comparing elements one by one.
+
+### 2. What is the time complexity of Merge Sort in the best, average, and worst cases? Why is it consistent?
+**Answer:** The time complexity is $O(N \log N)$ in all cases. This consistency is because Merge Sort always splits the array in half regardless of its initial order, creating a recursion tree of height $\log N$. At each level of the tree, the total work done to merge the sub-arrays is linear $O(N)$. Thus, total time complexity is always $O(N \log N)$.
+
+### 3. What is the primary disadvantage of Merge Sort compared to in-place sorting algorithms like Quick Sort?
+**Answer:** Its space complexity. Merge Sort is **not** in-place; it requires $O(N)$ auxiliary space to allocate temporary sub-arrays during the merge step. This makes it memory-intensive and less suitable for environments with strict RAM limits when sorting large datasets.
+
+### 4. Is Merge Sort stable? Explain how the merge step ensures stability.
+**Answer:** Yes, Merge Sort is **stable**. In the merge step, when comparing elements from the left subarray (`left_half[i]`) and right subarray (`right_half[j]`), if the values are equal, the code selects the element from the left subarray (`left_half[i] <= right_half[j]`). Because elements from the left sub-array originally appeared earlier, preferring them when values are equal preserves their original relative order.
+
+### 5. Why is Merge Sort highly preferred for sorting linked lists compared to other sorting algorithms?
+**Answer:**
+1. Linked lists do not support random access ($O(1)$ index access), which is required by algorithms like Heap Sort or Quick Sort. Merge Sort can sort linked lists sequentially by adjusting node pointers, avoiding the need for random access.
+2. When sorting linked lists, Merge Sort's merge operation can be performed by rearranging pointers in-place, reducing its auxiliary space complexity to $O(1)$ and removing its primary disadvantage of high memory consumption.
+

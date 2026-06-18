@@ -238,3 +238,26 @@ if __name__ == "__main__":
 
 - **Space Complexity**: $\mathcal{O}(1)$ (Auxiliary)
 - **Explanation**: Selection Sort is an **in-place** sorting algorithm. It only requires a constant amount of extra memory space (variables like `min_idx`, `i`, and `j`) to swap elements within the existing array structure.
+
+---
+
+## ❓ Interview Questions & Answers
+
+### 1. Describe the core step of Selection Sort in each pass.
+**Answer:** In each pass, Selection Sort scans the unsorted portion of the array to find the minimum (or maximum) element and swaps it with the first element of the unsorted portion. This moves the element into the sorted portion and shrinks the unsorted portion by one.
+
+### 2. Why does Selection Sort have a time complexity of $O(N^2)$ even in its best-case scenario (an already sorted array)?
+**Answer:** Selection Sort lacks any early-exit condition. Regardless of whether the input is already sorted, the algorithm must scan the entire unsorted portion of the array to verify that no smaller element exists. Consequently, it always performs $\frac{N(N-1)}{2}$ comparisons, yielding $O(N^2)$ time complexity.
+
+### 3. Is Selection Sort a stable sorting algorithm? Explain with an example.
+**Answer:** No, standard Selection Sort is **unstable**. Swapping a minimum element can displace duplicate elements, disrupting their original relative order.
+*   *Example:* Consider `[4, 4, 1]`.
+*   During the first pass, the minimum element is `1` (at index 2). We swap it with the first element (index 0, value `4`).
+*   The array becomes `[1, 4, 4]`. The first `4` (originally at index 0) has now been moved to index 2, putting it *after* the second `4` (originally at index 1). The relative order of the duplicate elements has been reversed.
+
+### 4. What is the primary advantage of Selection Sort over other $O(N^2)$ algorithms like Bubble Sort and Insertion Sort?
+**Answer:** Selection Sort minimizes the number of write/swap operations. While Bubble Sort and Insertion Sort can perform up to $O(N^2)$ writes in the worst case, Selection Sort performs at most $O(N)$ swaps (exactly one swap per outer loop iteration). This is highly advantageous in systems where writing to memory is significantly more expensive than reading (e.g., flash memory or EEPROM).
+
+### 5. What is the space complexity of Selection Sort?
+**Answer:** The space complexity is $O(1)$ auxiliary space. It is an **in-place** algorithm because it does not allocate any additional arrays or data structures proportional to the size of the input.
+
